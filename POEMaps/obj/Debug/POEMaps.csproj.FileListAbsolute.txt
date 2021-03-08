@@ -1,0 +1,15 @@
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\bin\Debug\POEMaps.exe.config
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\bin\Debug\POEMaps.exe
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\bin\Debug\POEMaps.pdb
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.csprojAssemblyReference.cache
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\MainWindow.g.cs
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\App.g.cs
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps_MarkupCompile.cache
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps_MarkupCompile.lref
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\MainWindow.baml
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.g.resources
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.Properties.Resources.resources
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.csproj.GenerateResource.cache
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.csproj.CoreCompileInputs.cache
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.exe
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.pdb
