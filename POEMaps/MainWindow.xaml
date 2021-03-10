@@ -84,7 +84,7 @@
                 </ScrollViewer>
             </TabItem>
             <TabItem x:Name="requestTabItem" Header="Request">
-                <ScrollViewer  Width="1100" HorizontalAlignment="Left" VerticalScrollBarVisibility="Hidden">
+                <ScrollViewer  Width="1100" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible">
                     <Grid x:Name="requestGrid">
 
                     </Grid>
@@ -109,7 +109,7 @@
                     </Grid.ColumnDefinitions>
                 </Grid>
             </ScrollViewer>
-            <Button Margin="10, 20, 10, 10" Content="Clear Selection" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="50" FontWeight="Bold" Width="500" Height="75" Click="send_request_click"/>
+            <Button Margin="10, 20, 10, 10" Content="Start Searching" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="50" FontWeight="Bold" Width="500" Height="75" Click="send_request_click"/>
 
         </WrapPanel>
 
