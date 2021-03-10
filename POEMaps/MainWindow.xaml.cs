@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using POEMaps;
+using System.IO;
+using System.Diagnostics;
+using System.Threading;
 
 namespace POEMaps
 {
@@ -43,6 +46,29 @@ namespace POEMaps
         int selected_watchstones = -1;
         Dictionary<int, bool> tiers_shown; //tier, selected
         List<Map> selected_maps = new List<Map>();
+        RequestResult request;
+        bool searchTaskRunning = false;
+
+
+        
+
+        public void logInfo(string s)
+        {
+            TextBlock t = new TextBlock();
+            t.Text = s;
+            t.FontSize = 14;
+            logsList.Children.Add(t);
+        }
+        
+
+        public void logError(string s)
+        {
+            TextBlock t = new TextBlock();
+            t.Text = s;
+            t.FontSize = 14;
+            t.Foreground = Brushes.Red;
+            logsList.Children.Add(t);
+        }
 
         public void InitializeDictionary()
         {
@@ -752,6 +778,7 @@ namespace POEMaps
             foreach(Map m in selected_maps)
             {
                 Button b = getMapButton(m);
+                b.Height = 55;
                 //b.BorderBrush = Brushes.DarkBlue;
 
                 if (!secondColumn)
@@ -920,7 +947,6 @@ namespace POEMaps
             defineWatchStones();
             filteredMaps = maps;
             listMapsInGrid(filteredMaps);
-            RequestTab requestTab = new RequestTab(requestGrid);
         }
 
         public void updateFilteredMaps()
@@ -1015,6 +1041,71 @@ namespace POEMaps
             }
 
             updateFilteredMaps();
+
+        }
+
+        public void startSearchTask()
+        {
+            
+                
+            request = new RequestResult(logsList);
+            RequestClient rq = RequestClient.GetInstance();
+            Application.Current.Dispatcher.Invoke((Action)delegate {
+                logInfo("Starting search for " + selected_maps.Count() + " maps!");
+            });
+
+            foreach (Map m in selected_maps)
+            {
+                var watch = Stopwatch.StartNew();
+
+                Application.Current.Dispatcher.Invoke((Action)delegate {
+                    logInfo("Getting offers for map \"" + m.name +"!");
+                });
+
+                PostResult pr = rq.postToGetFirst100Maps(m);
+                request.addPostResult(pr);
+
+                watch.Stop();
+                var elapsedMs = watch.ElapsedMilliseconds;
+
+                Application.Current.Dispatcher.Invoke((Action)delegate {
+                    logInfo("Getting offers for map \"" + m.name + "\" took " + (int)elapsedMs);
+                });
+                if (elapsedMs < 10000)
+                {
+                    Application.Current.Dispatcher.Invoke((Action)delegate {
+                        logInfo("Sleeping for another " + (10000 - (int)elapsedMs) + " seconds to prevent timeout!");
+                    });
+                    Thread.Sleep(10000 - (int)elapsedMs);
+                }
+
+            }
+            
+        }
+
+        private void send_request_click(object sender, RoutedEventArgs e)
+        {
+            if (searchTaskRunning)
+            {
+                logError("Cant start another research while waiting for one...");
+                return;
+            }
+
+            ((Button)sender).Background = Brushes.DarkRed;
+            Task task = new Task(new Action(startSearchTask));
+            Task continuationTask = task.ContinueWith(t => searchTaskRunning = false)
+                .ContinueWith(t => Application.Current.Dispatcher.Invoke((Action)delegate {
+                    logInfo("Ready to start another search!\n");
+                }))
+                .ContinueWith(t => this.Dispatcher.Invoke(() =>
+                {
+                    ((Button)sender).Background = Brushes.White;
+                }));
+            searchTaskRunning = true;
+            task.Start();
+
+
+
 
         }
     }

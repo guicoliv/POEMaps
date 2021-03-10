@@ -89,19 +89,27 @@
 
                     </Grid>
                 </ScrollViewer>
-                
+
+            </TabItem>
+            <TabItem x:Name="logsTabItem" Header="Logs">
+                <ScrollViewer  Width="1100" HorizontalAlignment="Left" VerticalScrollBarVisibility="Hidden">
+                    <StackPanel x:Name="logsList">
+
+                    </StackPanel>
+                </ScrollViewer>
+
             </TabItem>
         </TabControl>
         <WrapPanel Grid.Column="2" Width="540" Background="Bisque" HorizontalAlignment="Center" Orientation="Vertical">
             <ScrollViewer Height="850">
-                <Grid x:Name="selectedMapsGrid" Width="520">
+                <Grid x:Name="selectedMapsGrid" Width="520" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                 </Grid>
             </ScrollViewer>
-            <Button Margin="10, 20, 10, 10" Content="Clear Selection" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="50" FontWeight="Bold" Width="500" Height="75"/>
+            <Button Margin="10, 20, 10, 10" Content="Clear Selection" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontSize="50" FontWeight="Bold" Width="500" Height="75" Click="send_request_click"/>
 
         </WrapPanel>
 

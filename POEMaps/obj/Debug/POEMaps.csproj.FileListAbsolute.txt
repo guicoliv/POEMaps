@@ -13,3 +13,6 @@ C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.csproj.Generat
 C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.csproj.CoreCompileInputs.cache
 C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.exe
 C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.pdb
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.csproj.CopyComplete
