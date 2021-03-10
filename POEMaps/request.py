@@ -13,17 +13,17 @@ def postforfirst100forMap(mapCode):
     scraper = cloudscraper.create_scraper()
     #result = json.loads()
     print(scraper.post(url, headers=headers, data=json.dumps(myobj)).text)
-    '''
-    print('id:'+result['result'][0])
 
-
-    geturl = 'https://www.pathofexile.com/api/trade/fetch/'+result['result'][0]
-    getresult = json.loads(scraper.get(geturl, headers=headers).text)
-    return getresult['result'][0]['item']['properties'][1]['values'][0][0]
-    '''
 
 def get100forMap(codes):
-    print(codes)
+    url = 'https://www.pathofexile.com/api/trade/fetch/'+codes
+    headers = {"Content-Type": "application/json"}
+
+
+    scraper = cloudscraper.create_scraper()
+    #result = json.loads()
+    print(scraper.get(url, headers=headers).text)
+
 
 if __name__ == '__main__':
     #print(sys.argv[0])

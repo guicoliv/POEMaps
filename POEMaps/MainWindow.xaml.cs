@@ -1046,9 +1046,8 @@ namespace POEMaps
 
         public void startSearchTask()
         {
-            
-                
-            request = new RequestResult(logsList);
+
+            request = new RequestResult(logsList, requestGrid);
             RequestClient rq = RequestClient.GetInstance();
             Application.Current.Dispatcher.Invoke((Action)delegate {
                 logInfo("Starting search for " + selected_maps.Count() + " maps!");
@@ -1091,6 +1090,7 @@ namespace POEMaps
                 return;
             }
 
+            requestGrid.Children.Clear();
             ((Button)sender).Background = Brushes.DarkRed;
             Task task = new Task(new Action(startSearchTask));
             Task continuationTask = task.ContinueWith(t => searchTaskRunning = false)

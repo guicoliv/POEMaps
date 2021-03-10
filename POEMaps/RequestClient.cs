@@ -19,15 +19,11 @@ namespace POEMaps
 
         public PostResult postToGetFirst100Maps(Map m)
         {
-            List<String> ids = new List<String>();
 
             string workingDirectory = Environment.CurrentDirectory;
-
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.FullName;
 
-            string python_file_path = projectDirectory + "\\request.py";
 
-            Console.WriteLine(python_file_path);
 
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -63,7 +59,7 @@ namespace POEMaps
                         }
                         catch(Exception e)
                         {
-                            Console.WriteLine("deu exception a ler o jtoken (provavelmente nao trouxe 200 valores");
+                            Console.WriteLine("deu exception a ler o jtoken (provavelmente nao trouxe 200 valores)" + e);
                         }
                     }
                     Console.WriteLine(sss);
