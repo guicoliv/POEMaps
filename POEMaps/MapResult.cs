@@ -16,6 +16,7 @@ namespace POEMaps
         public int x { get; set; }
         public int y { get; set;}
         public int position { get; set; }
+        public int offerMultiplier{ get; set; }
 
         public MapResult(Map m, string currency, int currencyAmount, int mapAmount, string stash, int x, int y, int position)
         {
@@ -27,6 +28,7 @@ namespace POEMaps
             this.x = x;
             this.y = y;
             this.position = position;
+            this.offerMultiplier = 1;
         }
     }
 }

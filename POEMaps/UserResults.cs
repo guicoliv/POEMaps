@@ -85,7 +85,7 @@ namespace POEMaps
                 foreach(MapResult offer in results)
                 {
                     price += offer.currencyAmount;
-                    message.Text += offer.m.name + " (" + offer.m.tier + "), ";
+                    message.Text += offer.mapAmount + " " + offer.m.name + " (" + offer.m.tier + "), ";
                 }
 
                 message.Text += "for my " + price + " Chaos Orb in Ritual.";

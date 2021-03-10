@@ -125,6 +125,9 @@ namespace POEMaps
                             strX = "0";
                             strY = "0";
                         }*/
+
+                        Console.Write(item);
+
                         string currency = item["listing"]["price"]["exchange"]["currency"].ToString();
                         string strCurrencyAmount = item["listing"]["price"]["exchange"]["amount"].ToString();
                         string strMapAmount = item["listing"]["price"]["item"]["amount"].ToString();
