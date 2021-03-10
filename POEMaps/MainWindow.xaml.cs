@@ -16,6 +16,7 @@ using POEMaps;
 using System.IO;
 using System.Diagnostics;
 using System.Threading;
+using System.ComponentModel;
 
 namespace POEMaps
 {
@@ -1044,10 +1045,41 @@ namespace POEMaps
 
         }
 
+        public void sortUsersBasedOnOffers(List<UserResults> users)
+        {
+            int i = 0;
+            foreach(UserResults user in users)
+            {
+                if (user.getNResults() > i)
+                    i = user.getNResults();
+            }
+
+            Console.WriteLine("Biggest NOFFERS = " + i);
+
+            for(int j = i; j > 0; j--)
+            {
+                foreach (UserResults user in users)
+                {
+                    if (user.getNResults() == j)
+                    {
+
+                        Console.WriteLine(user.getNResults() + " offers;");
+                        Border border = new Border();
+                        border.BorderBrush = Brushes.Black;
+                        border.BorderThickness = new Thickness(2);
+                        border.Child = user.userGrid;
+                        border.Margin = new Thickness(5, 3, 10, 3);
+                        requestListView.Items.Add(border);
+                    }
+                }
+            }
+
+        }
+
         public void startSearchTask()
         {
 
-            request = new RequestResult(logsList, requestGrid);
+            request = new RequestResult(logsList, requestListView);
             RequestClient rq = RequestClient.GetInstance();
             Application.Current.Dispatcher.Invoke((Action)delegate {
                 logInfo("Starting search for " + selected_maps.Count() + " maps!");
@@ -1079,7 +1111,21 @@ namespace POEMaps
                 }
 
             }
-            
+            List<UserResults> users = request.getUserResults();
+
+            Application.Current.Dispatcher.Invoke((Action)delegate
+            {
+                foreach(Border b in requestListView.Items)
+                {
+                    b.Child = null;
+                }
+                requestListView.Items.Clear();
+
+                sortUsersBasedOnOffers(users);
+                
+            });
+
+
         }
 
         private void send_request_click(object sender, RoutedEventArgs e)
@@ -1090,7 +1136,7 @@ namespace POEMaps
                 return;
             }
 
-            requestGrid.Children.Clear();
+            //requestListView.Children.Clear();
             ((Button)sender).Background = Brushes.DarkRed;
             Task task = new Task(new Action(startSearchTask));
             Task continuationTask = task.ContinueWith(t => searchTaskRunning = false)

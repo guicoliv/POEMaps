@@ -84,11 +84,8 @@
                 </ScrollViewer>
             </TabItem>
             <TabItem x:Name="requestTabItem" Header="Request">
-                <ScrollViewer  Width="1100" HorizontalAlignment="Left" VerticalScrollBarVisibility="Visible">
-                    <Grid x:Name="requestGrid">
-
-                    </Grid>
-                </ScrollViewer>
+                <ListView x:Name="requestListView" Width="1100">
+                </ListView>
 
             </TabItem>
             <TabItem x:Name="logsTabItem" Header="Logs">

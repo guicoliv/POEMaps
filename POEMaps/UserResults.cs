@@ -33,8 +33,10 @@ namespace POEMaps
                 topRow.ColumnDefinitions.Add(new ColumnDefinition());
 
                 TextBox identifier = new TextBox();
-                identifier.FontSize = 16;
-                identifier.Text = "User: " + username;
+                identifier.FontSize = 18;
+                identifier.Margin = new Thickness(2, 2, 20, 5);
+                identifier.FontWeight = FontWeights.Bold;
+                identifier.Text = username;
                 identifier.IsReadOnly = true;
                 identifier.TextWrapping = TextWrapping.Wrap;
                 Grid.SetColumn(identifier, 0);
@@ -72,7 +74,7 @@ namespace POEMaps
                 TextBlock identifier = new TextBlock();
                 identifier.FontSize = 14;
                 identifier.Height = 20;
-                identifier.Text = "Map: " + mr.m.name + " - " + mr.amount + " " + mr.currency;
+                identifier.Text = mr.m.name + ": " + mr.mapAmount + " for " + mr.currencyAmount + " " + mr.currency;
                 Grid.SetRow(identifier, getNResults());
 
 
@@ -82,7 +84,7 @@ namespace POEMaps
 
                 foreach(MapResult offer in results)
                 {
-                    price += offer.amount;
+                    price += offer.currencyAmount;
                     message.Text += offer.m.name + " (" + offer.m.tier + "), ";
                 }
 

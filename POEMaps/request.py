@@ -16,7 +16,7 @@ def postforfirst100forMap(mapCode):
 
 
 def get100forMap(codes):
-    url = 'https://www.pathofexile.com/api/trade/fetch/'+codes
+    url = 'https://www.pathofexile.com/api/trade/fetch/'+codes+'?exchange'
     headers = {"Content-Type": "application/json"}
 
 

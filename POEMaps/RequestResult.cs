@@ -17,6 +17,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel;
 
 namespace POEMaps
 {
@@ -25,14 +26,14 @@ namespace POEMaps
         public List<PostResult> post_results { get; set; } //item_ids, id, map
         public List<UserResults> users { get; set; }
         public StackPanel sp;
-        public Grid requestGrid;
+        public ListView requestListView;
         public TextBlock child = null;
 
         RequestClient rq = RequestClient.GetInstance();
 
-        public RequestResult(StackPanel sp, Grid requestGrid)
+        public RequestResult(StackPanel sp, ListView requestListView)
         {
-            this.requestGrid = requestGrid;
+            this.requestListView = requestListView;
             post_results = new List<PostResult>();
             users = new List<UserResults>();
             this.sp = sp;
@@ -124,15 +125,19 @@ namespace POEMaps
                             strX = "0";
                             strY = "0";
                         }*/
-                        string currency = item["listing"]["price"]["currency"].ToString();
-                        string strAmount = item["listing"]["price"]["amount"].ToString();
+                        string currency = item["listing"]["price"]["exchange"]["currency"].ToString();
+                        string strCurrencyAmount = item["listing"]["price"]["exchange"]["amount"].ToString();
+                        string strMapAmount = item["listing"]["price"]["item"]["amount"].ToString();
                         string account = item["listing"]["account"]["lastCharacterName"].ToString();
 
-                        int x, y, amount;
+                        int x, y, currencyAmount, mapAmount;
 
                         
 
-                        if (!Int32.TryParse(strX, out x) || !Int32.TryParse(strY, out y) || !Int32.TryParse(strAmount, out amount))
+                        if (!Int32.TryParse(strX, out x) 
+                            || !Int32.TryParse(strY, out y) 
+                            || !Int32.TryParse(strCurrencyAmount, out currencyAmount)
+                            || !Int32.TryParse(strMapAmount, out mapAmount))
                         {
                             Console.WriteLine("Error parsing the results");
                             continue;
@@ -143,7 +148,8 @@ namespace POEMaps
                         Console.Write("; x: " +x);
                         Console.Write("; y: " +y);
                         Console.Write("; currency: " +currency);
-                        Console.Write("; amount: " +amount);
+                        Console.Write("; currency amount: " + strCurrencyAmount);
+                        Console.Write("; map amount: " + strMapAmount);
                         Console.Write("; account: " +account+"\n");
 
                         UserResults u = null;
@@ -167,14 +173,19 @@ namespace POEMaps
                         }
 
 
-                        MapResult mapResult = new MapResult(m, currency, amount, stash, x, y, u.getNResults());
+                        MapResult mapResult = new MapResult(m, currency, currencyAmount, mapAmount, stash, x, y, u.getNResults());
                         u.addMapResult(mapResult);
                         if (!existed)
                         {
                             Application.Current.Dispatcher.Invoke((Action)delegate
                             {
-                                requestGrid.RowDefinitions.Add(new RowDefinition());
-                                requestGrid.Children.Add(u.userGrid);
+                                //requestListView.Items.Add(new RowDefinition());
+                                Border border = new Border();
+                                border.BorderBrush = Brushes.Black;
+                                border.BorderThickness = new Thickness(2);
+                                border.Child = u.userGrid;
+                                border.Margin = new Thickness(5, 3, 10, 3);
+                                requestListView.Items.Add(border);
                             });
                         }
                         else
@@ -184,6 +195,11 @@ namespace POEMaps
                     }                    
                 }
             }
+        }
+
+        public List<UserResults> getUserResults()
+        {
+            return users;
         }
 
 

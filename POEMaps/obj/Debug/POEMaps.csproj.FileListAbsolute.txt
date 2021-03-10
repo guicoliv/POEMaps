@@ -16,3 +16,8 @@ C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.pdb
 C:\Users\Guilherme\source\repos\POEMaps\POEMaps\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Guilherme\source\repos\POEMaps\POEMaps\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.csproj.CopyComplete
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\bin\Debug\POEMaps.exe.manifest
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\bin\Debug\POEMaps.application
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.TrustInfo.xml
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.exe.manifest
+C:\Users\Guilherme\source\repos\POEMaps\POEMaps\obj\Debug\POEMaps.application
